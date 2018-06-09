@@ -1,22 +1,24 @@
-console.log("Starting app");
+console.log("Starting app.js");
 
 const fs = require('fs');
-const os = require('os');
+const _ = require('lodash');
 
-// (node:19372) [DEP0013] DeprecationWarning: Calling an asynchronous
-// function without callb ack is deprecated.
-// fs.appendFile('greetings.txt','Hello world!');
+const notes = require('./notes.js');
 
-//USers info
-const user = os.userInfo();
-// console.log(user);
+// Arguments vectors
+// console.log(process.argv);
 
-// with callback
-fs.appendFile('greetings.txt',`Hello ${user.username}\n`,function(err){
-  if (err) {
-    console.log("Unable to write to file");
-  }
-});
+const command = process.argv[2];
+console.log("Command:", command);
 
-// Async
-// fs.appendFileSync('greetings.txt',"Hello world");
+if (command === 'add') {
+  console.log("Adding new note");
+}else if (command === "list") {
+  console.log("Listing all notes");
+}else if (command === "read") {
+  console.log("Reading note");
+}else if (command === "remove") {
+  console.log("Removing note");
+}else {
+  console.log("Command not recognize");
+}
