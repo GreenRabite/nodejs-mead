@@ -46,7 +46,7 @@ if (command === 'add') {
   if (note === undefined) {
     console.log(`Title: ${argv.title} not found`);
   }else {
-    console.log('--REMOVED--');
+    console.log('--REMOVED---');
     notes.logNote(note);
     console.log('-----------');
   }
