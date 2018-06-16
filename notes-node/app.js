@@ -1,4 +1,4 @@
-console.log("Starting app.js");
+// console.log("Starting app.js");
 
 const fs = require('fs');
 const _ = require('lodash');
@@ -14,21 +14,44 @@ const argv = yargs.argv;
 const command = argv._[0];
 console.log("Command:", command);
 // console.log("Process:", process.argv);
-console.log("Yargs:", argv);
+// console.log("Yargs:", argv);
 
 
 if (command === 'add') {
-  // console.log("Adding new note");
-  notes.addNote(argv.title,argv.body);
+  const note = notes.addNote(argv.title,argv.body);
+  if (note === undefined) {
+    console.log("Duplicate note found. Note not saved!");
+  }else {
+    console.log('--SAVED--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+    console.log('---------');
+  }
 }else if (command === "list") {
   // console.log("Listing all notes");
   notes.getAll();
 }else if (command === "read") {
   // console.log("Reading note");
-  notes.getNote(argv.title);
+  const note = notes.getNote(argv.title);
+  if (note === undefined) {
+    console.log(`Title: ${argv.title} not found`);
+  }else {
+    console.log('--NOTE--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+    console.log('--------');
+  }
 }else if (command === "remove") {
   // console.log("Removing note");
-  notes.removeNote(argv.title);
+  const note = notes.removeNote(argv.title);
+  if (note === undefined) {
+    console.log(`Title: ${argv.title} not found`);
+  }else {
+    console.log('--REMOVED--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+    console.log('-----------');
+  }
 }else {
   console.log("Command not recognize");
 }
