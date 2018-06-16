@@ -37,8 +37,7 @@ if (command === 'add') {
     console.log(`Title: ${argv.title} not found`);
   }else {
     console.log('--NOTE--');
-    console.log(`Title: ${note.title}`);
-    console.log(`Body: ${note.body}`);
+    notes.logNote(note);
     console.log('--------');
   }
 }else if (command === "remove") {
@@ -48,8 +47,7 @@ if (command === 'add') {
     console.log(`Title: ${argv.title} not found`);
   }else {
     console.log('--REMOVED--');
-    console.log(`Title: ${note.title}`);
-    console.log(`Body: ${note.body}`);
+    notes.logNote(note);
     console.log('-----------');
   }
 }else {
